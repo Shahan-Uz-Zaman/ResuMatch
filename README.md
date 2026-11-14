@@ -57,3 +57,8 @@ Open http://localhost:3000. The SQLite database is created automatically at `dat
 - Scanned PDFs need OCR before upload.
 - Resume analysis sends extracted resume text to Google's Gemini API.
 - Uploaded resumes and `.env` must remain private. Do not commit secrets, databases, or resume files.
+## Team
+- **Team name:** Next X
+- **Developed By:**
+  1. Supratim Gogoi
+  2. Shahan Uz Zaman
