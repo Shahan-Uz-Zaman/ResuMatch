@@ -11,8 +11,30 @@ body:has(#dashboard:not(.hidden)){background:#f1f5ff}.dash-sidebar{background:li
 .analysis-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.analysis-actions .mini-link{font-family:'DM Sans',sans-serif;cursor:pointer}.analysis-actions button:hover,.mini-link:hover{background:#eaf0ff}.resume-page-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:4px 0 18px}.resume-page-heading h1{font-size:30px;margin:7px 0 4px}.resume-page-heading .muted{margin:0}.full-analysis{padding:24px}.full-analysis>p:first-child{font-size:15px;line-height:1.7;color:#53617a}.full-analysis .info-block{margin-top:22px}.full-analysis .info-block h3{font:700 15px Manrope,sans-serif;color:#182542}.full-analysis .chip-list{gap:8px}.full-analysis .chip{font-size:12px;padding:7px 11px}.full-analysis .info-block li,.full-analysis .info-block p{font-size:14px;line-height:1.75;color:#53617a}.resume-page-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.resume-page-grid .panel h2{margin:0 0 12px}.resume-page-grid #fullSuggestions h3{font-size:14px;margin:14px 0 5px}.resume-page-grid .suggestion-list{font-size:13px;line-height:1.8}.resume-page-grid #fullLearningPath .suggestion-list li{padding:10px 12px;border:1px solid #e2e9f7;border-radius:10px;margin:8px 0;background:#fff}@media(max-width:720px){.resume-page-heading{align-items:flex-start}.resume-page-heading h1{font-size:25px}.resume-page-grid{grid-template-columns:1fr}.analysis-actions{gap:5px}.analysis-actions .mini-link{font-size:11px;padding:7px 9px}}
 /* Keep resume details behind the full analysis view */
 #profileContent{display:none!important}.analysis-details .empty-state{max-width:420px;text-align:left;padding:14px}.analysis-details .empty-state p{margin-bottom:0}.analysis-details .empty-state strong{font-size:14px}.analysis-details .open-analysis{margin-top:8px}.analysis-score-summary{display:grid;grid-template-columns:116px minmax(0,1fr);gap:20px;align-items:center;padding:8px 0 22px;border-bottom:1px solid #e8edf7}.full-score-ring{--score:0%;width:108px;height:108px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#18bd79 var(--score),#e7edf8 var(--score));position:relative}.full-score-ring:before{content:"";position:absolute;inset:9px;border-radius:50%;background:#fff}.full-score-ring strong{position:relative;font:800 27px Manrope,sans-serif;color:#15223d}.analysis-score-summary h2{font-size:19px;margin:0 0 7px}.analysis-score-summary p{margin:4px 0;color:#53617a;font-size:13px;line-height:1.6}.analysis-score-summary p.muted{font-size:11px}.full-analysis-details{padding-top:4px}@media(max-width:520px){.analysis-score-summary{grid-template-columns:82px 1fr;gap:13px}.full-score-ring{width:78px;height:78px}.full-score-ring strong{font-size:21px}}
+
+/* Keep the score and its description readable when the dashboard column narrows. */
+.profile-panel{container-type:inline-size}
+.analysis-layout{grid-template-columns:minmax(100px,190px) minmax(0,1fr)}
+.analysis-score,.analysis-details{min-width:0}
+.analysis-details .empty-state{overflow-wrap:anywhere}
+.score-ring{flex:0 0 auto}
+@container (max-width:500px){.analysis-layout{grid-template-columns:108px minmax(0,1fr);gap:12px}.score-ring{width:88px;height:88px;font-size:28px}}
+@container (max-width:360px){.analysis-layout{grid-template-columns:1fr;justify-items:center;gap:12px}.analysis-score{grid-template-columns:64px minmax(0,1fr);justify-items:start;align-items:center;text-align:left;width:100%}.score-ring{grid-row:span 2;width:56px;height:56px;border-width:6px;font-size:21px}.analysis-score>small{grid-column:2}.analysis-details{width:100%}}
+
+/* Keep the dashboard's stat marks centered and legible inside their color discs. */
+.stat>.stat-icon{display:grid;place-items:center;flex:0 0 58px;width:58px;height:58px;margin:0;color:currentColor;font-size:25px;line-height:1}
+.stat-score>.stat-icon{color:#15945a}
+.stat-resume>.stat-icon{color:#1680ed}
+.stat-skills>.stat-icon{color:#7047eb}
+.stat-roles>.stat-icon{color:#ec870c}
+.stat-apps>.stat-icon{color:#247be2}
+.job-card[hidden]{display:none!important}
+.score-ring.is-complete{background:#18bd79!important;color:#15945a}
+.full-analysis .full-score-ring.is-complete{background:#18bd79!important}
+.full-analysis .full-score-ring.is-complete strong{color:#15945a}
+html[data-theme="dark"] .score-ring strong,html[data-theme="dark"] .full-score-ring strong{color:#b9f6d0}
 /* Resume score display */
-.stat-score .stat-icon{background:#e8faef;color:#12a765}.score-ring{background:conic-gradient(#18bd79 0 var(--score),#e2eafa var(--score) 100%)}.score-ring:after{inset:10px}.score-ring strong{position:relative;z-index:1;font:800 24px Manrope,sans-serif;color:#14243a}.score-ring span{display:none}.stat-score strong{color:#15945a}.stat-score small{white-space:nowrap}.stat{gap:11px;padding:13px}.stat-icon{width:48px;height:48px;flex-basis:48px;font-size:24px}@media(min-width:1101px) and (max-width:1370px){.stats-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:560px){.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stat-score .stat-icon{background:#e8faef;color:#12a765}.score-ring{background-color:#e2eafa;background-image:conic-gradient(from -90deg,#18bd79 0%,#18bd79 var(--score),#e2eafa var(--score),#e2eafa 100%)}.score-ring:after{inset:10px}.score-ring strong{position:relative;z-index:1;font:800 24px Manrope,sans-serif;color:#14243a}.score-ring span{display:none}.stat-score strong{color:#15945a}.stat-score small{white-space:nowrap}.stat{gap:11px;padding:13px}.stat-icon{width:48px;height:48px;flex-basis:48px;font-size:24px}@media(min-width:1101px) and (max-width:1370px){.stats-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:560px){.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 /* Reliable green progress arc on the full analysis score */
 .full-analysis .full-score-ring{background-color:#e7edf8;background-image:conic-gradient(from -90deg,#18bd79 0%,#18bd79 var(--score),#e7edf8 var(--score),#e7edf8 100%);}
 /* Resume update form lives in the My Resume page toolbar */

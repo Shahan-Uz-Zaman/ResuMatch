@@ -1,7 +1,13 @@
 import fs from 'node:fs/promises';
+import { createRequire } from 'node:module';
 import pdf from 'pdf-parse/lib/pdf-parse.js';
 import mammoth from 'mammoth';
 import WordExtractor from 'word-extractor';
+
+// pdf-parse 1.x uses this bundled PDF.js build, which logs recoverable
+// TrueType-font warnings for some resumes. Keep errors visible without the noise.
+const require = createRequire(import.meta.url);
+require('pdf-parse/lib/pdf.js/v1.10.100/build/pdf.js').PDFJS.verbosity = 0;
 
 export async function extractResumeText(file) {
   const ext = file.originalname.toLowerCase().split('.').pop();

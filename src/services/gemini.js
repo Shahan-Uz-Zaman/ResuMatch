@@ -29,7 +29,10 @@ export async function analyseResume(resumeText) {
   if (!process.env.GEMINI_API_KEY) {
     throw new Error('Gemini is not configured. Add GEMINI_API_KEY to your .env file.');
   }
-  const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+  const ai = new GoogleGenAI({
+    apiKey: process.env.GEMINI_API_KEY,
+    httpOptions: { timeout: 60000, retryOptions: { attempts: 1 } }
+  });
   const primaryModel = process.env.GEMINI_MODEL || 'gemini-3.8-flash';
   const models = [...new Set([primaryModel, 'gemini-3.7-flash', 'gemini-3.5-flash-lite'])];
   const request = {
@@ -44,6 +47,11 @@ export async function analyseResume(resumeText) {
       response = await ai.models.generateContent({ ...request, model });
       break;
     } catch (error) {
+      if (error?.name === 'AbortError' || error?.name === 'TimeoutError' || /timed out|timeout|aborted/i.test(error?.message || '')) {
+        const timeoutError = new Error('Gemini took too long to respond. Your resume was saved; please try analysing it again.');
+        timeoutError.status = 504;
+        throw timeoutError;
+      }
       if (!isUnavailable(error)) throw error;
       lastUnavailable = error;
       if (index < models.length - 1) await sleep(750 * (index + 1));
